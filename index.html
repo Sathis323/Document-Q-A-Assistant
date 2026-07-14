@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Q&A Assistant</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="app">
+    <header class="app__header">
+      <h1>📄 Document Q&amp;A Assistant</h1>
+      <p>Upload a PDF, then ask questions. Answers come strictly from the document.</p>
+    </header>
+
+    <main class="app__main">
+
+      <section class="panel panel--upload" id="uploadPanel">
+        <h2>1. Upload a PDF</h2>
+        <label class="dropzone" id="dropzone" for="fileInput">
+          <input type="file" id="fileInput" accept="application/pdf" hidden>
+          <div class="dropzone__content">
+            <span class="dropzone__icon">⬆️</span>
+            <span id="dropzoneText">Click to choose a PDF, or drag one here</span>
+          </div>
+        </label>
+        <div id="uploadStatus" class="status"></div>
+        <div id="docInfo" class="doc-info" hidden>
+          <strong id="docName"></strong>
+          <span id="docMeta"></span>
+        </div>
+      </section>
+
+      <section class="panel panel--chat" id="chatPanel">
+        <h2>2. Ask a question</h2>
+        <div class="chat" id="chat">
+          <div class="chat__empty" id="chatEmpty">
+            Upload a document to start asking questions.
+          </div>
+        </div>
+
+        <form id="askForm" class="ask-form">
+          <textarea
+            id="questionInput"
+            placeholder="Ask something about the document..."
+            rows="2"
+            disabled
+          ></textarea>
+          <button type="submit" id="askBtn" disabled>Ask</button>
+        </form>
+      </section>
+
+    </main>
+
+    <footer class="app__footer">
+      <span>Answers are generated only from the uploaded document's content.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
